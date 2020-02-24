@@ -13,10 +13,15 @@ class CreateActionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('actions', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->timestamps();
-        });
+        // CREATE 
+            Schema::create('actions', function (Blueprint $table) {
+                $table->bigIncrements('id');
+                $table->timestamps();
+            });
+
+        // INDEX
+
+        // POPULATE
     }
 
     /**
