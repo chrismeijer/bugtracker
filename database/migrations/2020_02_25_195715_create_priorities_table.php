@@ -21,15 +21,6 @@ class CreatePrioritiesTable extends Migration
                 // SET INDEX
                     $table->index('priority');
             });
-        
-        // POPULATE TABLE
-            DB::table('priorities')->insert([
-                ['priority' => 'No Priority'],
-                ['priority' => 'Low'],
-                ['priority' => 'Normal'],
-                ['priority' => 'High'],
-                ['priority' => 'Immediate']
-            ]);
     }
 
     /**

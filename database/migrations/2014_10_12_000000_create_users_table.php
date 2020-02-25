@@ -29,17 +29,6 @@ class CreateUsersTable extends Migration
                 // SET INDEXES
                     $table->index(['email', 'role_id']);
             });
-
-        // POPULATE WITH ADMIN-USER
-            DB::table('users')->insert([
-                [
-                    'role_id' => 1,
-                    'name' => 'Admin User',
-                    'email' => 'admin@admin.nl',
-                    'password' => Hash::make('0000'),
-                    'created_at' => date("Y/m/d")
-                ]
-            ]);
     }
 
     /**

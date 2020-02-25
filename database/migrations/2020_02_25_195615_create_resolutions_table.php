@@ -21,14 +21,6 @@ class CreateResolutionsTable extends Migration
                 // SET INDEX
                     $table->index('resolution');
             });
-
-        // POPULATE TABLE
-            DB::table('resolutions')->insert([
-                ['resolution' => 'Bug'],
-                ['resolution' => 'New Feature'],
-                ['resolution' => 'Improvement'],
-                ['resolution' => 'Task']
-            ]);
     }
 
     /**

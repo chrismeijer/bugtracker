@@ -21,13 +21,6 @@ class CreateRolesTable extends Migration
                 // SET INDEX
                     $table->index(['role']);
             });
-
-        // POPULATE TABLE 
-            DB::table('roles')->insert([
-                ['role' => 'Admin'],
-                ['role' => 'Employee'],
-                ['role' => 'Customer']
-            ]);
     }
 
     /**

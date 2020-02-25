@@ -21,18 +21,6 @@ class CreateStatusesTable extends Migration
                 // INDEXES
                     $table->index(['status']);
             });
-
-        // POPULATE 
-            DB::table('statuses')->insert([
-                ['status' => 'Open'],
-                ['status' => 'Pending'],
-                ['status' => 'In Progress'],
-                ['status' => 'Resolved'],
-                ['status' => 'Won&acute;t fix'],
-                ['status' => 'Closed'],
-                ['status' => 'On Hold'],
-                ['status' => 'ReOpen']
-            ]);
     }
 
     /**
