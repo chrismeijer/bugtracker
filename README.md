@@ -80,18 +80,26 @@ To make sure there are no misunderstandings I came up with this project scope:
 
 Below is the explanation of how I setup the models, controllers and migrations.
 
-## Models
+## Controllers
 
-All of the models below can be mutated by the administrator, so the parameters ***-m*** and ***-c*** are added 
+Only to mutate the user, the UserController is added with parameter ***-r***.
 
 ```bash
-php artisan make:model Role -m -c
-php artisan make:model Category -m -c
-php artisan make:model Priority -m -c
-php artisan make:model Resolution -m -c
-php artisan make:model Status -m -c
-php artisan make:model Attachment -m -c
-php artisan make:model Bug -m -c
+php artisan make:controller User -r
+```
+
+## Models
+
+All of the models below can be mutated by the administrator, so the parameters ***-mcr*** are added.
+
+```bash
+php artisan make:model Role -mcr
+php artisan make:model Category -mcr
+php artisan make:model Priority -mcr
+php artisan make:model Resolution -mcr
+php artisan make:model Status -mcr
+php artisan make:model Attachment -mcr
+php artisan make:model Bug -mcr
 ```
 
 ## Pivot Tables

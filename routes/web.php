@@ -18,3 +18,13 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('role', 'RoleController');
+Route::resource('bug', 'BugController');
+Route::resource('category', 'CategoryController');
+Route::resource('user', 'User');
+Route::resource('comment', 'CommentController');
+Route::resource('status', 'StatusController');
+Route::resource('priority', 'PriorityController');
+Route::resource('resolution', 'ResolutionController');
+Route::resource('attachment', 'AttachmentController');
