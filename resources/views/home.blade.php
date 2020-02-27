@@ -14,7 +14,12 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    <a href="{{ route('bug.create') }}">Bug toevoegen</a>
+
+                    @foreach ($bugs as $bug) 
+                        <p><a href="{{ route('bug.show', [$bug->id]) }}">{{ $bug->title }}</a></p>
+                    @endforeach
+
                 </div>
             </div>
         </div>
