@@ -13,10 +13,10 @@ class ActionsTableSeeder extends Seeder
     {
         $titles = [
             'index' => '',
-            'create' => ' toevoegen',
-            'show' => ' info',
-            'edit' => ' bewerken',
-            'destroy' => ' verwijderen',
+            'create' => 'Add ',
+            'show' => 'View ',
+            'edit' => 'Edit ',
+            'destroy' => 'Delete ',
         ];
 
         $routesCollection = Route::getRoutes();
@@ -32,7 +32,7 @@ class ActionsTableSeeder extends Seeder
                     'key' => $controller.'_'.$action,
                     'controller' => $controller,
                     'action' => $action,
-                    'title' => ucFirst($controller).$titles[$action]
+                    'title' => $titles[$action].$controller
                 ]);
             endif;
         endforeach;
