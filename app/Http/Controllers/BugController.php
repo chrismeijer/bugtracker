@@ -35,7 +35,7 @@ class BugController extends Controller
      */
     public function create()
     {
-        return view('bug.create');
+        return view('bugs.create');
     }
 
     /**

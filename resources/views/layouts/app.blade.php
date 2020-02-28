@@ -55,6 +55,35 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('users.edit', Auth::user()->id) }}">
+                                        {{ __('Edit account')}}
+                                    </a>
+
+                                    @if (Auth::user()->role_id == 1)    
+                                        <a class="dropdown-item" href="{{ route('roles.index') }}">
+                                            {{ __('Manage roles')}}
+                                        </a>
+
+                                        <a class="dropdown-item" href="{{ route('priorities.index') }}">
+                                            {{ __('Manage priorities')}}
+                                        </a>
+
+                                        <a class="dropdown-item" href="{{ route('categories.index') }}">
+                                            {{ __('Manage categories')}}
+                                        </a>
+
+                                        <a class="dropdown-item" href="{{ route('resolutions.index') }}">
+                                            {{ __('Manage resolutions')}}
+                                        </a>
+
+                                        <a class="dropdown-item" href="{{ route('statuses.index') }}">
+                                            {{ __('Manage statuses')}}
+                                        </a>
+
+                                        <!-- <a class="dropdown-item" href="#route('actions.index')-to-change">
+                                            {{ __('Manage actions')}}
+                                        </a> -->
+                                    @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

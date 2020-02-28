@@ -19,12 +19,12 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('role', 'RoleController');
-Route::resource('bug', 'BugController');
-Route::resource('category', 'CategoryController');
-Route::resource('user', 'User');
-Route::resource('comment', 'CommentController');
-Route::resource('status', 'StatusController');
-Route::resource('priority', 'PriorityController');
-Route::resource('resolution', 'ResolutionController');
-Route::resource('attachment', 'AttachmentController');
+Route::resource('roles', 'RoleController');
+Route::resource('bugs', 'BugController');
+Route::resource('categories', 'CategoryController');
+Route::resource('users', 'User');
+Route::resource('comments', 'CommentController');
+Route::resource('statuses', 'StatusController');
+Route::resource('priorities', 'PriorityController');
+Route::resource('resolutions', 'ResolutionController');
+Route::resource('attachments', 'AttachmentController');

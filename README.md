@@ -45,6 +45,7 @@ To make sure there are no misunderstandings I came up with this project scope:
 **Roles:**
   - Can only be mutated by the administrative-role
   - Can perform one or more actions to operate and navigate
+  - Extra tab on the add- and edit-page to set the permissions
 
   - **Extra actions executable by roles:**
     - Administrator:
@@ -61,12 +62,12 @@ To make sure there are no misunderstandings I came up with this project scope:
       - Can reopen bugs
 
     - Employee:
+      - Can mutate users
       - Can convert bug status
       - Can convert bug resolution
       - Can assign bug to employee itself
       - Can remove customers comments
       - Can reopen bugs
-
 
 **Bugs:**
   - Needs a title and description
@@ -80,12 +81,16 @@ To make sure there are no misunderstandings I came up with this project scope:
 
 Below is the explanation of how I setup the models, controllers and migrations.
 
+## Middlewares
+
+I've added a VerifyPagePermission-middleware to check if the logged in user may use the requested page. Because of the URL can be requested there's this verifier.
+
 ## Controllers
 
-Only to mutate the user, the UserController is added with parameter ***-r***.
+Only to mutate the user, a UserController is added with parameter ***-r***.
 
 ```bash
-php artisan make:controller User -r
+php artisan make:controller UserController -r
 ```
 
 ## Models
@@ -106,20 +111,24 @@ php artisan make:model Bug -mcr
 
 The pivot tables are there for relationships between models. 
 
+  - User to Role
+  - Permissions (Role to Action)
+
 ## Controllers
 
-There's one controller added to the application. This controller 
+{}
 
 ## Migrations
 
 Because of the presence of the create-user-table migration and the create_password_resets_table migration, these two migrations are left alone. Only the create-user-table migration is expanded with a role_id, soft-delete column. 
 
-To setup the BugTracker with a predefined user as administrator, the create-user-table migration is extended with a query to populate the user-table. 
-
 **Other Migrations:**
+
+To setup a roles with its permissions to view, create, update and/or delete I've added an extra table with actions and a pivot table, permissions, to store the relationship between roles and actions. 
 
 ```bash
 php artisan make:migration create_actions_table --create=actions
+php artisan make:migration create_permissions_table --create=permissions
 ```
 
 ## Foreign Key Constraints
@@ -138,6 +147,7 @@ To populate tables I added seeders for the following entities:
   - Priorities
   - Statuses
   - Resolutions
+  - Permissions
 
 The commands I used: 
 
@@ -149,6 +159,7 @@ php artisan make:seeder CategoriesTableSeeder
 php artisan make:seeder PrioritiesTableSeeder
 php artisan make:seeder StatusesTableSeeder
 php artisan make:seeder ResolutionsTableSeeder
+php artisan make:seeder PermissionsTableSeeder
 ```
 
 ## MAYBE BELOW 

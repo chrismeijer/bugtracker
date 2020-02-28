@@ -14,10 +14,10 @@
                         </div>
                     @endif
 
-                    <a href="{{ route('bug.create') }}">Bug toevoegen</a>
+                    <a href="{{ route('bugs.create') }}">Bug toevoegen</a>
 
                     @foreach ($bugs as $bug) 
-                        <p><a href="{{ route('bug.show', [$bug->id]) }}">{{ $bug->title }}</a></p>
+                        <p><a href="{{ route('bugs.show', [$bug->id]) }}">{{ $bug->title }}</a></p>
                     @endforeach
 
                 </div>

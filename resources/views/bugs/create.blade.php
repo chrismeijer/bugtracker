@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    <form action="{{ route('bug.store') }}" method="post">
+                    <form action="{{ route('bugs.store') }}" method="post">
                         @csrf
 
                         <label for="title">Bug Title</label>
