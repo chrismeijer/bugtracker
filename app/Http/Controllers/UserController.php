@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
+use App\Policies\UserPolicy;
+use Illuminate\Support\Facades\Gate;
+use Auth;
 
-class User extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -56,7 +60,22 @@ class User extends Controller
      */
     public function edit($id)
     {
-        //
+        $requested_user = User::findOrFail($id);
+        $response = Gate::inspect('update', $requested_user);
+
+        if($response->allowed())
+            return view('users.edit', compact('requested_user'));
+        else
+            return $response->message();
+
+        //return 'edit user';
+        /*$user = Auth::user();
+        $requested_user = User::findOrFail($id);
+        
+        if($user->id == $id || $user->role_id == 1)
+            return view('users.edit', compact('requested_user'));
+        else 
+            return view('errors.not-authorized');*/
     }
 
     /**

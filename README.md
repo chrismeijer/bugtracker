@@ -81,9 +81,18 @@ To make sure there are no misunderstandings I came up with this project scope:
 
 Below is the explanation of how I setup the models, controllers and migrations.
 
-## Middlewares
+## Policies
 
-I've added a VerifyPagePermission-middleware to check if the logged in user may use the requested page. Because of the URL can be requested there's this verifier.
+I've added policies to check if the logged in user may undertake actions. 
+
+One of them is to check if the user may visit a page, based on the role. This is done by a policy, ViewPagePolicy.
+
+A user may always edit it's own account. The URL is based on the users own ID. Because of this, the user can change the ID in the URL and request the edit page for an other user. To check this I added a UserPolicy to verify actions based on the role of the user.  
+
+```bash
+php artisan make:policy ViewPagePolicy
+php artisan make:policy UserPolicy
+```
 
 ## Controllers
 

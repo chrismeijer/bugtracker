@@ -22,7 +22,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('roles', 'RoleController');
 Route::resource('bugs', 'BugController');
 Route::resource('categories', 'CategoryController');
-Route::resource('users', 'User');
+Route::resource('users', 'UserController');
 Route::resource('comments', 'CommentController');
 Route::resource('statuses', 'StatusController');
 Route::resource('priorities', 'PriorityController');
