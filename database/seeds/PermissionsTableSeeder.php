@@ -18,17 +18,64 @@ class PermissionsTableSeeder extends Seeder
                 ]);
             endfor;
         // EMPLOYEE
-            $employeeActionsArray = [1,3,6,7,8,9,10,11,13,16,17,18,19,20,21,22,23,24,25,26,28,31,33,36,38,41,42,43,44,45];
-            foreach($employeeActionsArray as $action_id) :
+            $employeeActionsArray = [
+                ['controller' => 'bugs', 'action' => 'index'],
+                ['controller' => 'bugs', 'action' => 'create'],
+                ['controller' => 'bugs', 'action' => 'show'],
+                ['controller' => 'bugs', 'action' => 'edit'],
+                ['controller' => 'bugs', 'action' => 'destroy'],
+                ['controller' => 'users', 'action' => 'index'],
+                ['controller' => 'users', 'action' => 'create'],
+                ['controller' => 'users', 'action' => 'show'],
+                ['controller' => 'users', 'action' => 'edit'],
+                ['controller' => 'users', 'action' => 'destroy'],
+                ['controller' => 'comments', 'action' => 'index'],
+                ['controller' => 'comments', 'action' => 'create'],
+                ['controller' => 'comments', 'action' => 'show'],
+                ['controller' => 'comments', 'action' => 'edit'],
+                ['controller' => 'comments', 'action' => 'destroy'],
+                ['controller' => 'attachments', 'action' => 'index'],
+                ['controller' => 'attachments', 'action' => 'create'],
+                ['controller' => 'attachments', 'action' => 'show'],
+                ['controller' => 'attachments', 'action' => 'edit'],
+                ['controller' => 'attachments', 'action' => 'destroy']
+            ];
+            foreach($employeeActionsArray as $action) :
+                $actionId = DB::table('actions')
+                    ->where('controller', $action['controller'])
+                    ->where('action', $action['action'])
+                    ->value('id');
+
                 DB::table('permissions')->insert([
-                    ['role_id' => 2,'action_id' => $action_id]
+                    ['role_id' => 2, 'action_id' => $actionId]
                 ]);
             endforeach;
         // CUSTOMER
-            $customerActionsArray = [6,7,8,9,10,19,21,22,23,24,25,41,42,43,44,45];
-            foreach($customerActionsArray as $action_id) :
+            $customerActionsArray = [
+                ['controller' => 'bugs', 'action' => 'index'],
+                ['controller' => 'bugs', 'action' => 'create'],
+                ['controller' => 'bugs', 'action' => 'show'],
+                ['controller' => 'bugs', 'action' => 'edit'],
+                ['controller' => 'bugs', 'action' => 'destroy'],
+                ['controller' => 'comments', 'action' => 'index'],
+                ['controller' => 'comments', 'action' => 'create'],
+                ['controller' => 'comments', 'action' => 'show'],
+                ['controller' => 'comments', 'action' => 'edit'],
+                ['controller' => 'comments', 'action' => 'destroy'],
+                ['controller' => 'attachments', 'action' => 'index'],
+                ['controller' => 'attachments', 'action' => 'create'],
+                ['controller' => 'attachments', 'action' => 'show'],
+                ['controller' => 'attachments', 'action' => 'edit'],
+                ['controller' => 'attachments', 'action' => 'destroy']
+            ];
+            foreach($customerActionsArray as $action) :
+                $actionId = DB::table('actions')
+                    ->where('controller', $action['controller'])
+                    ->where('action', $action['action'])
+                    ->value('id');
+
                 DB::table('permissions')->insert([
-                    ['role_id' => 3, 'action_id' => $action_id]
+                    ['role_id' => 3, 'action_id' => $actionId]
                 ]);
             endforeach;
     }

@@ -66,7 +66,7 @@ class UserController extends Controller
         if($response->allowed())
             return view('users.edit', compact('requested_user'));
         else
-            return $response->message();
+            return view('errors.not-authorized');
 
         //return 'edit user';
         /*$user = Auth::user();

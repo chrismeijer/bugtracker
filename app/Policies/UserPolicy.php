@@ -53,7 +53,7 @@ class UserPolicy
      */
     public function update(User $user, User $model)
     {
-        return ($user->id == $model->id || $user->role_id == 1) ? Response::allow() : Response::deny('<p>You are not allowed to edit this user.</p><p><a href="/home">Click here</a> to return to your dashboard.</p>');
+        return ($user->id == $model->id || $user->role_id == 1) ? Response::allow() : Response::deny();
     }
 
     /**

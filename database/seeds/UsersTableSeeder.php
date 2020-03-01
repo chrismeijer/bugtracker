@@ -12,17 +12,27 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
+            // ADMIN 
             [
                 'role_id' => 1,
                 'name' => 'Admin User',
-                'email' => 'admin@admin.nl',
+                'email' => 'admin@bugtracker.nl',
                 'password' => Hash::make('0000'),
                 'created_at' => date("Y/m/d")
             ], 
+            // EMPLOYEE
             [
                 'role_id' => 2,
                 'name' => 'Employee User',
-                'email' => 'employee@admin.nl',
+                'email' => 'employee@bugtracker.nl',
+                'password' => Hash::make('0000'),
+                'created_at' => date("Y/m/d")
+            ],
+            // USER
+            [
+                'role_id' => 3,
+                'name' => 'Common User',
+                'email' => 'user@user.nl',
                 'password' => Hash::make('0000'),
                 'created_at' => date("Y/m/d")
             ]

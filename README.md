@@ -83,14 +83,9 @@ Below is the explanation of how I setup the models, controllers and migrations.
 
 ## Policies
 
-I've added policies to check if the logged in user may undertake actions. 
-
-One of them is to check if the user may visit a page, based on the role. This is done by a policy, ViewPagePolicy.
-
-A user may always edit it's own account. The URL is based on the users own ID. Because of this, the user can change the ID in the URL and request the edit page for an other user. To check this I added a UserPolicy to verify actions based on the role of the user.  
+A user may always edit it's own account. The edit user URL is based on an user-id. Because of this, the user can change the ID in the URL and request the edit page for an other user. To check this I added a UserPolicy to verify actions based on the role of the user.  
 
 ```bash
-php artisan make:policy ViewPagePolicy
 php artisan make:policy UserPolicy
 ```
 
@@ -125,7 +120,11 @@ The pivot tables are there for relationships between models.
 
 ## Controllers
 
-{}
+Not every user may view a page. So I added a permissions controller to check for the logged in users role_id and requested route name. 
+
+```bash
+php artisan make:controller PermissionController
+```
 
 ## Migrations
 
@@ -170,6 +169,15 @@ php artisan make:seeder StatusesTableSeeder
 php artisan make:seeder ResolutionsTableSeeder
 php artisan make:seeder PermissionsTableSeeder
 ```
+
+# Middleware
+I created a middleware to check if the user may visit the page. This is based on the users role. 
+
+```bash
+php artisan make:middleware Authorize
+```
+
+In the web-route I added a middleware group. The other routes are standard pages. 
 
 ## MAYBE BELOW 
 For users with role customer I've added a factory

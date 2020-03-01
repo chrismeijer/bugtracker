@@ -22,7 +22,7 @@ class ActionsTableSeeder extends Seeder
         $routesCollection = Route::getRoutes();
 
         foreach($routesCollection as $route) :
-            if($route->getName()!='' && !in_array($route->getName(), ['home','login','logout','register']) && strpos($route->getName(),'password') === false && in_array($route->methods()[0], ['GET','DELETE'])) :
+            if($route->getName()!='' && !in_array($route->getName(), ['home','login','logout','register','redirect-to-error-not-authorized']) && strpos($route->getName(),'password') === false && in_array($route->methods()[0], ['GET','DELETE'])) :
                 $routeNameSplit = explode('.', $route->getName());
                 $controller = current($routeNameSplit);
                 $action = $route->getActionMethod();
