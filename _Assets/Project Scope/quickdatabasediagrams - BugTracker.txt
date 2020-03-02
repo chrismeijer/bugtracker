@@ -1,7 +1,6 @@
-# Database Schema 
-# ================================================
-# This is the database schema for the BugTracker.
-# Thanks to: quickdatabasediagrams.com
+# Modify this code to update the DB schema diagram.
+# To reset the sample schema, replace everything with
+# two dots ('..' - without quotes).
 
 User
 -
@@ -49,8 +48,8 @@ Title string
 
 Permissions
 -
-RoleID PK int FK - Roles.RoleID
-ActionID PK int FK - Actions.ActionID
+RoleID PK int FK >-< Roles.RoleID
+ActionID PK int FK >-< Actions.ActionID
 
 Bugs
 -
