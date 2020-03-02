@@ -24,13 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        //$bug = new Bug();
         $bugs = Bug::all();
         return view('home', compact('bugs'));
-    }
-
-    public function redirectToErrorNotAuthorized()
-    {
-        return view('errors.not-authorized');
     }
 }

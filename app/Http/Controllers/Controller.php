@@ -11,4 +11,13 @@ use Illuminate\Http\Request;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    /**
+     * Show the not authorized error page
+     */
+
+    public function redirectToErrorNotAuthorized()
+    {
+        return view('errors.not-authorized');
+    }
 }

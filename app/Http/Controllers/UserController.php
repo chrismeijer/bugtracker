@@ -67,15 +67,6 @@ class UserController extends Controller
             return view('users.edit', compact('requested_user'));
         else
             return view('errors.not-authorized');
-
-        //return 'edit user';
-        /*$user = Auth::user();
-        $requested_user = User::findOrFail($id);
-        
-        if($user->id == $id || $user->role_id == 1)
-            return view('users.edit', compact('requested_user'));
-        else 
-            return view('errors.not-authorized');*/
     }
 
     /**

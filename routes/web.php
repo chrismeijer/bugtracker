@@ -20,7 +20,7 @@ use App\Http\Middleware\Authorize;
     Auth::routes();
     Route::get('/not-authorized', [
         'as' => 'redirect-to-error-not-authorized',
-        'uses' => 'HomeController@redirectToErrorNotAuthorized',
+        'uses' => 'Controller@redirectToErrorNotAuthorized',
     ]);
     Route::get('/home', 'HomeController@index')->name('home');
     Route::resource('bugs', 'BugController');
