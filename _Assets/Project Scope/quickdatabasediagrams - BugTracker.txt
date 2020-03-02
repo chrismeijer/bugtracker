@@ -1,0 +1,68 @@
+# Database Schema 
+# ================================================
+# This is the database schema for the BugTracker.
+# Thanks to: quickdatabasediagrams.com
+
+User
+-
+UserID PK int
+RoleID int FK - Roles.RoleID
+Name string INDEX
+Email string UNIQUE
+Email_Verified_At timestamp
+Password string
+RememberToken bool
+
+Roles
+-
+RoleID PK int
+Role string INDEX
+
+Categories
+-
+CategoryID PK int
+Category string INDEX
+
+Statuses
+-
+StatusID PK int
+Status string INDEX
+
+Priorities
+-
+PriorityID PK int
+Priority string INDEX
+
+Resolutions
+-
+ResolutionID PK int
+Resolution string INDEX
+
+Actions
+-
+ActionID PK int
+Name string INDEX
+Key string INDEX
+Controller string INDEX
+Action string INDEX
+Title string
+
+Permissions
+-
+RoleID PK int FK - Roles.RoleID
+ActionID PK int FK - Actions.ActionID
+
+Bugs
+-
+BugID PK int
+Created_By_User_ID int FK - User.UserID
+Assigned_To_User_ID int FK - User.UserID
+Category_ID int FK - Categories.CategoryID
+Status_ID int FK - Statuses.StatusID
+Priority_ID int FK - Priorities.PriorityID
+Notify_creator bool
+Title string
+Description text
+
+Comments
+- 
