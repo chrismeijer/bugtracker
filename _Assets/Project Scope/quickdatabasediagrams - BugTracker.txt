@@ -2,7 +2,7 @@
 # To reset the sample schema, replace everything with
 # two dots ('..' - without quotes).
 
-User
+Users
 -
 UserID PK int
 RoleID int FK - Roles.RoleID
@@ -54,14 +54,26 @@ ActionID PK int FK >-< Actions.ActionID
 Bugs
 -
 BugID PK int
-Created_By_User_ID int FK - User.UserID
-Assigned_To_User_ID int FK - User.UserID
-Category_ID int FK - Categories.CategoryID
-Status_ID int FK - Statuses.StatusID
-Priority_ID int FK - Priorities.PriorityID
-Notify_creator bool
+CreatedByUserID int FK >- Users.UserID
+AssignedToUserID int FK >- Users.UserID
+CategoryID int FK >- Categories.CategoryID
+StatusID int FK >- Statuses.StatusID
+PriorityID int FK >- Priorities.PriorityID
+ResolutionID int FK >- Resolutions.ResolutionID
+NotifyCreator bool
 Title string
 Description text
 
 Comments
 - 
+CommentID PK int
+UserID int FK >- Users.UserID
+BugID int FK >- Bugs.BugID
+Comment text
+
+Files
+-
+FileID PK int
+UserID int FK >- Users.UserID
+BugID int FK >- Bugs.BugID
+FileName string
