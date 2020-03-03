@@ -17,7 +17,7 @@ class CreateBugsTable extends Migration
         Schema::create('bugs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('created_by_user_id');
-            $table->unsignedBigInteger('assigned_to_user_id');
+            $table->unsignedBigInteger('assigned_to_user_id')->nullable();
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('status_id');
             $table->unsignedBigInteger('priority_id');
@@ -28,6 +28,18 @@ class CreateBugsTable extends Migration
 
             // SET INDEXES
                 //$table->index(['','','']);
+
+            // SET FOREIGN KEYS
+                // CREATED BY USER_ID
+                    $table->foreign('created_by_user_id')
+                        ->references('id')->on('users')
+                        ->onDelete('restrict')
+                        ->onUpdate('restrict');
+                // ASSIGNED TO USER_ID
+                    $table->foreign('assigned_to_user_id')
+                        ->references('id')->on('users')
+                        ->onDelete('restrict')
+                        ->onUpdate('restrict');
         });
     }
 

@@ -12,11 +12,11 @@ class CategoriesTableSeeder extends Seeder
     public function run()
     {
         DB::table('categories')->insert([
-            ['category' => 'Front-End'],
-            ['category' => 'Back-End'],
-            ['category' => 'Database'],
-            ['category' => 'API'],
-            ['category' => 'Website']
+            ['id' => 1, 'title' => 'Front-End'],
+            ['id' => 2, 'title' => 'Back-End'],
+            ['id' => 3, 'title' => 'Database'],
+            ['id' => 4, 'title' => 'API'],
+            ['id' => 5, 'title' => 'Website']
         ]);
     }
 }

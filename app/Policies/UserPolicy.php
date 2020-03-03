@@ -65,7 +65,7 @@ class UserPolicy
      */
     public function delete(User $user, User $model)
     {
-        //
+        return ($user->id == $model->id || $user->role_id == 1) ? Response::allow() : Response::deny();
     }
 
     /**

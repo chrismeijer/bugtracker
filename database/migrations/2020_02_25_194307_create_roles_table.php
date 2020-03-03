@@ -16,10 +16,10 @@ class CreateRolesTable extends Migration
         // CREATE TABLE
             Schema::create('roles', function (Blueprint $table) {
                 $table->bigIncrements('id');
-                $table->string('role');
+                $table->string('title');
 
                 // SET INDEX
-                    $table->index(['role']);
+                    $table->index(['title']);
             });
     }
 

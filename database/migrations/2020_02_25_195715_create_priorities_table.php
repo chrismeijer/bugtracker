@@ -16,10 +16,10 @@ class CreatePrioritiesTable extends Migration
         // CREATE TABLE
             Schema::create('priorities', function (Blueprint $table) {
                 $table->bigIncrements('id');
-                $table->string('priority');
+                $table->string('title');
 
                 // SET INDEX
-                    $table->index('priority');
+                    $table->index('title');
             });
     }
 

@@ -16,10 +16,10 @@ class CreateStatusesTable extends Migration
         // CREATE TABLE 
             Schema::create('statuses', function (Blueprint $table) {
                 $table->bigIncrements('id');
-                $table->string('status');
+                $table->string('title');
 
                 // INDEXES
-                    $table->index(['status']);
+                    $table->index(['title']);
             });
     }
 

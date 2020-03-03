@@ -12,10 +12,10 @@ class ResolutionsTableSeeder extends Seeder
     public function run()
     {
         DB::table('resolutions')->insert([
-            ['resolution' => 'Bug'],
-            ['resolution' => 'New Feature'],
-            ['resolution' => 'Improvement'],
-            ['resolution' => 'Task']
+            ['id' => 1, 'title' => 'Bug'],
+            ['id' => 2, 'title' => 'New Feature'],
+            ['id' => 3, 'title' => 'Improvement'],
+            ['id' => 4, 'title' => 'Task']
         ]);
     }
 }

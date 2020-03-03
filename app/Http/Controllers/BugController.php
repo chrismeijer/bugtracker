@@ -69,12 +69,13 @@ class BugController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Bug  $bug
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Bug $bug)
+    public function show($id)
     {
-        //
+        $bug = Bug::findOrFail($id);
+        return view('bugs.read', compact('bug'));
     }
 
     /**

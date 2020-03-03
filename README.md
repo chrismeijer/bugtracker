@@ -50,6 +50,7 @@ To make sure there are no misunderstandings I came up with this project scope:
   - **Extra actions executable by roles:**
     - Administrator:
       - Can mutate users
+      - Can mutate bugs
       - Can mutate roles
       - Can mutate categories
       - Can mutate statuses

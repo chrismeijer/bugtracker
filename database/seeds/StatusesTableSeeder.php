@@ -12,14 +12,14 @@ class StatusesTableSeeder extends Seeder
     public function run()
     {
         DB::table('statuses')->insert([
-            ['status' => 'Open'],
-            ['status' => 'Pending'],
-            ['status' => 'In Progress'],
-            ['status' => 'Resolved'],
-            ['status' => 'Won&acute;t fix'],
-            ['status' => 'Closed'],
-            ['status' => 'On Hold'],
-            ['status' => 'ReOpen']
+            ['id' => 1, 'title' => 'Open'],
+            ['id' => 2, 'title' => 'Pending'],
+            ['id' => 3, 'title' => 'In Progress'],
+            ['id' => 4, 'title' => 'Resolved'],
+            ['id' => 5, 'title' => 'Won&acute;t fix'],
+            ['id' => 6, 'title' => 'Closed'],
+            ['id' => 7, 'title' => 'On Hold'],
+            ['id' => 8, 'title' => 'ReOpen']
         ]);
     }
 }

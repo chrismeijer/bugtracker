@@ -15,6 +15,11 @@ class RoleController extends Controller
      */
     public function index()
     {
+        echo '<pre>';
+        $user = Role::find(1)->user;
+        print_r($user);
+        exit;
+
         return view('admin.roles.index');
     }
 

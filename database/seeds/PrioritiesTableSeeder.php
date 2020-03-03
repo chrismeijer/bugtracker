@@ -12,11 +12,11 @@ class PrioritiesTableSeeder extends Seeder
     public function run()
     {
         DB::table('priorities')->insert([
-            ['priority' => 'No Priority'],
-            ['priority' => 'Low'],
-            ['priority' => 'Normal'],
-            ['priority' => 'High'],
-            ['priority' => 'Immediate']
+            ['id' => 1, 'title' => 'No Priority'],
+            ['id' => 2, 'title' => 'Low'],
+            ['id' => 3, 'title' => 'Normal'],
+            ['id' => 4, 'title' => 'High'],
+            ['id' => 5, 'title' => 'Immediate']
         ]);
     }
 }

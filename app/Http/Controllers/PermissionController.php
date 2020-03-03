@@ -14,7 +14,7 @@ class PermissionController extends Controller
     public function checkPermission($request)
     {
         $roleId = auth()->user()->role_id;
-        $routeName = $request->route()->getName();
+        $routeName = isset($request->name) ? $request->name : $request->route()->getName();
         $routeSplit = explode('.',$routeName);
         $controller = $routeSplit[0];
         $action = $routeSplit[1];
@@ -25,7 +25,7 @@ class PermissionController extends Controller
             ->where('actions.controller', $controller)
             ->where('actions.action', $action)
             ->count();
-
+            
         return boolval($allowed);
     }
 }

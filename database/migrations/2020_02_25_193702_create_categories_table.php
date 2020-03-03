@@ -16,10 +16,10 @@ class CreateCategoriesTable extends Migration
         // CREATE TABLE
         Schema::create('categories', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('category');
+            $table->string('title');
 
             // INDEXES
-                $table->index(['category']);
+                $table->index(['title']);
         });
     }
 

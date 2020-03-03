@@ -49,7 +49,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $requested_user = User::findOrFail($id);
+        return view('users.read', compact('requested_user'));
     }
 
     /**
@@ -61,6 +62,17 @@ class UserController extends Controller
     public function edit($id)
     {
         $requested_user = User::findOrFail($id);
+
+        //echo '<pre>';
+        
+        //print_r($requested_user);
+
+        //echo $requested_user->role;
+
+        //print_r($requested_user->bugsAssigned);
+
+        //exit;
+
         $response = Gate::inspect('update', $requested_user);
 
         if($response->allowed())
