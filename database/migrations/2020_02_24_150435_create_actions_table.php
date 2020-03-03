@@ -13,15 +13,18 @@ class CreateActionsTable extends Migration
      */
     public function up()
     {
-        // CREATE 
-            Schema::create('actions', function (Blueprint $table) {
-                $table->bigIncrements('id');
-                $table->timestamps();
-            });
+        // CREATE TABLE
+        Schema::create('actions', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('name')->nullable();
+            $table->string('key')->nullable();
+            $table->string('controller');
+            $table->string('action');
+            $table->string('title')->nullable();
 
-        // INDEX
-
-        // POPULATE
+            // INDEXES
+                $table->index(['name','key','controller','action']);
+        });
     }
 
     /**

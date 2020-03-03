@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'BugTracker') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -23,8 +23,8 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                <a class="navbar-brand" href="{{ route('home') }}">
+                    {{ config('app.name', 'BugTracker') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -55,6 +55,35 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('users.edit', Auth::user()->id) }}">
+                                        {{ __('Edit account')}}
+                                    </a>
+
+                                    @if (Auth::user()->role_id == 1)    
+                                        <a class="dropdown-item" href="{{ route('roles.index') }}">
+                                            {{ __('Manage roles')}}
+                                        </a>
+
+                                        <a class="dropdown-item" href="{{ route('priorities.index') }}">
+                                            {{ __('Manage priorities')}}
+                                        </a>
+
+                                        <a class="dropdown-item" href="{{ route('categories.index') }}">
+                                            {{ __('Manage categories')}}
+                                        </a>
+
+                                        <a class="dropdown-item" href="{{ route('resolutions.index') }}">
+                                            {{ __('Manage resolutions')}}
+                                        </a>
+
+                                        <a class="dropdown-item" href="{{ route('statuses.index') }}">
+                                            {{ __('Manage statuses')}}
+                                        </a>
+
+                                        <!-- <a class="dropdown-item" href="#route('actions.index')-to-change">
+                                            {{ __('Manage actions')}}
+                                        </a> -->
+                                    @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

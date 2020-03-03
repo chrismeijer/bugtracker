@@ -16,19 +16,11 @@ class CreateResolutionsTable extends Migration
         // CREATE TABLE 
             Schema::create('resolutions', function (Blueprint $table) {
                 $table->bigIncrements('id');
-                $table->string('resolution');
+                $table->string('title');
 
                 // SET INDEX
-                    $table->index('resolution');
+                    $table->index('title');
             });
-
-        // POPULATE TABLE
-            DB::table('resolutions')->insert([
-                ['resolution' => 'Bug'],
-                ['resolution' => 'New Feature'],
-                ['resolution' => 'Improvement'],
-                ['resolution' => 'Task']
-            ]);
     }
 
     /**

@@ -1,78 +1,198 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+# BugTracker on Laravel
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+This document informs about how I have developed this BugTracker application. 
 
-## About Laravel
+## Scope of the Project
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+To make sure there are no misunderstandings I came up with this project scope:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+**The BugTracker:**
+  - Must have a login possibility
+  - Users can register and become a customer-role
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+**Actions:**
+  - Cannot be mutated
+  - Are there to navigate and operate through the application
+  - Can be a menu-option, a submenu-option or a loose button/link
 
-## Learning Laravel
+  - **Executable actions:**
+    - CRUD Users
+    - CRUD Roles
+    - CRUD Bugs
+    - CRUD Comments
+    - CRUD Categories
+    - CRUD Statuses
+    - CRUD Priorities
+    - CRUD Resolutions
+    - CRUD Attachments
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+**Users:**
+  - Can be mutated by the administrative-role
+  - Can edit it's own account
+  - Are all in the same table
+  - Must have a role
+  - Can only have one role 
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+  - **Standard actions executable by users:**
+    - Can login/logout
+    - Can create a bug
+    - Can edit own bugs
+    - Can reopen own bugs
+    - Can make comments
+    - Can edit own comments
+    - Can remove own comments
 
-## Laravel Sponsors
+**Roles:**
+  - Can only be mutated by the administrative-role
+  - Can perform one or more actions to operate and navigate
+  - Extra tab on the add- and edit-page to set the permissions
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+  - **Extra actions executable by roles:**
+    - Administrator:
+      - Can mutate users
+      - Can mutate bugs
+      - Can mutate roles
+      - Can mutate categories
+      - Can mutate statuses
+      - Can mutate priorities
+      - Can mutate resolutions
+      - Can mutate comments
+      - Convert bug status
+      - Convert bug resolution
+      - Can assign bug to administrator or employee
+      - Can reopen bugs
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
+    - Employee:
+      - Can mutate users
+      - Can convert bug status
+      - Can convert bug resolution
+      - Can assign bug to employee itself
+      - Can remove customers comments
+      - Can reopen bugs
 
-## Contributing
+**Bugs:**
+  - Needs a title and description
+  - Needs a resolution
+  - Needs a priority
+  - When no priority is used, then priority is 0 (no priority)
+  - Needs a category
+  - Can have an attachment
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Used Commands
 
-## Code of Conduct
+Below is the explanation of how I setup the models, controllers and migrations.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Policies
 
-## Security Vulnerabilities
+A user may always edit it's own account. The edit user URL is based on an user-id. Because of this, the user can change the ID in the URL and request the edit page for an other user. To check this I added a UserPolicy to verify actions based on the role of the user.  
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```bash
+php artisan make:policy UserPolicy
+```
 
-## License
+## Controllers
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Only to mutate the user, a UserController is added with parameter ***-r***.
+
+```bash
+php artisan make:controller UserController -r
+```
+
+## Models
+
+All of the models below can be mutated by the administrator, so the parameters ***-mcr*** are added.
+
+```bash
+php artisan make:model Role -mcr
+php artisan make:model Category -mcr
+php artisan make:model Priority -mcr
+php artisan make:model Resolution -mcr
+php artisan make:model Status -mcr
+php artisan make:model Attachment -mcr
+php artisan make:model Bug -mcr
+```
+
+## Pivot Tables
+
+The pivot tables are there for relationships between models. 
+
+  - User to Role
+  - Permissions (Role to Action)
+
+## Controllers
+
+Not every user may view a page. So I added a permissions controller to check for the logged in users role_id and requested route name. 
+
+```bash
+php artisan make:controller PermissionController
+```
+
+## Migrations
+
+Because of the presence of the create-user-table migration and the create_password_resets_table migration, these two migrations are left alone. Only the create-user-table migration is expanded with a role_id, soft-delete column. 
+
+**Other Migrations:**
+
+To setup a roles with its permissions to view, create, update and/or delete I've added an extra table with actions and a pivot table, permissions, to store the relationship between roles and actions. 
+
+```bash
+php artisan make:migration create_actions_table --create=actions
+php artisan make:migration create_permissions_table --create=permissions
+```
+
+## Foreign Key Constraints
+
+```bash
+php artisan make:migration create_user_to_role_foreign_key --table=users
+```
+
+## Seeders
+To populate tables I added seeders for the following entities:
+
+  - Actions
+  - Users
+  - Roles
+  - Categories
+  - Priorities
+  - Statuses
+  - Resolutions
+  - Permissions
+
+The commands I used: 
+
+```bash
+php artisan make:seeder ActionsTableSeeder
+php artisan make:seeder UsersTableSeeder
+php artisan make:seeder RolesTableSeeder
+php artisan make:seeder CategoriesTableSeeder
+php artisan make:seeder PrioritiesTableSeeder
+php artisan make:seeder StatusesTableSeeder
+php artisan make:seeder ResolutionsTableSeeder
+php artisan make:seeder PermissionsTableSeeder
+```
+
+# Middleware
+I created a middleware to check if the user may visit the page. This is based on the users role. 
+
+```bash
+php artisan make:middleware Authorize
+```
+
+In the web-route I added a middleware group. The other routes are standard pages. 
+
+## MAYBE BELOW 
+For users with role customer I've added a factory
+
+Factory->Insert a lot of data 
+
+## Install and run
+
+Don't forget to create a database and fill in the correct db-parameters.
+
+```bash
+git clone
+composer install
+cp .env.example .env
+php artisan migrate --seed
+php artisan serve
+```

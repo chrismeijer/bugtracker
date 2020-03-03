@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersToRolesForeignKey extends Migration
+class CreateUserToRoleForeignKey extends Migration
 {
     /**
      * Run the migrations.
@@ -15,9 +15,9 @@ class CreateUsersToRolesForeignKey extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->foreign('role_id')
-            ->references('id')->on('roles')
-            ->onDelete('restrict')
-            ->onUpdate('restrict');
+                ->references('id')->on('roles')
+                ->onDelete('restrict')
+                ->onUpdate('restrict');
         });
     }
 

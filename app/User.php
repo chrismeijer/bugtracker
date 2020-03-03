@@ -36,4 +36,28 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Get the role associated with the user
+     */
+    public function role()
+    {
+        return $this->belongsTo('App\Role');
+    }
+
+    /**
+     * Get the bugs created by the user
+    */
+    public function bugsCreated()
+    {
+        return $this->hasMany('App\Bug', 'created_by_user_id');
+    }
+
+    /**
+     * Get the bugs assigned to the user
+    */
+    public function bugsAssigned()
+    {
+        return $this->hasMany('App\Bug', 'assigned_to_user_id');
+    }
 }

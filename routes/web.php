@@ -11,10 +11,33 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+use App\Http\Middleware\Authorize;
 
-Auth::routes();
+// STANDARD PAGES
+    Route::get('/', function () {
+        return view('welcome');
+    });
+    Auth::routes();
+    Route::get('/not-authorized', [
+        'as' => 'redirect-to-error-not-authorized',
+        'uses' => 'Controller@redirectToErrorNotAuthorized',
+    ]);
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::resource('bugs', 'BugController');
+    Route::resource('users', 'UserController');
+    Route::resource('comments', 'CommentController');
+    Route::resource('attachments', 'AttachmentController');
 
-Route::get('/home', 'HomeController@index')->name('home');
+// ROUTE GROUP CHECK FOR ROLE
+    Route::group(['middleware' => Authorize::class], function() {
+        Route::resource('roles', 'RoleController');
+        Route::resource('categories', 'CategoryController');
+        Route::resource('statuses', 'StatusController');
+        Route::resource('priorities', 'PriorityController');
+        Route::resource('resolutions', 'ResolutionController');
+    });
+
+/*Route::get('roles', function () {
+    //
+})->middleware(Authorize::class);*/
+

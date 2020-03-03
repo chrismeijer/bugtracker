@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRolesTable extends Migration
+class CreatePrioritiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,20 +14,13 @@ class CreateRolesTable extends Migration
     public function up()
     {
         // CREATE TABLE
-            Schema::create('roles', function (Blueprint $table) {
+            Schema::create('priorities', function (Blueprint $table) {
                 $table->bigIncrements('id');
-                $table->string('role');
+                $table->string('title');
 
                 // SET INDEX
-                    $table->index(['role']);
+                    $table->index('title');
             });
-
-        // POPULATE TABLE 
-            DB::table('roles')->insert([
-                ['role' => 'Admin'],
-                ['role' => 'Employee'],
-                ['role' => 'Customer']
-            ]);
     }
 
     /**
@@ -37,6 +30,6 @@ class CreateRolesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('roles');
+        Schema::dropIfExists('priorities');
     }
 }

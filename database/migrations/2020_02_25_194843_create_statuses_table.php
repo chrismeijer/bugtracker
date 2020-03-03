@@ -16,23 +16,11 @@ class CreateStatusesTable extends Migration
         // CREATE TABLE 
             Schema::create('statuses', function (Blueprint $table) {
                 $table->bigIncrements('id');
-                $table->string('status');
+                $table->string('title');
 
                 // INDEXES
-                    $table->index(['status']);
+                    $table->index(['title']);
             });
-
-        // POPULATE 
-            DB::table('statuses')->insert([
-                ['status' => 'Open'],
-                ['status' => 'Pending'],
-                ['status' => 'In Progress'],
-                ['status' => 'Resolved'],
-                ['status' => 'Won&acute;t fix'],
-                ['status' => 'Closed'],
-                ['status' => 'On Hold'],
-                ['status' => 'ReOpen']
-            ]);
     }
 
     /**
