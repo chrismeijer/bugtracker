@@ -86,24 +86,23 @@
 
                 <div>
                     <p>In this demo there are three users:</p>
-                    <ul>
-                        <li>
-                            <div><strong>Administrator</strong></div>
-                            <div>Username: admin@bugtracker.nl</div>
-                            <div>Password: 0000</div>
-                        </li>
+                    <div>
+                        <div><strong>Administrator</strong></div>
+                        <div>Username: admin@bugtracker.nl</div>
+                        <div>Password: 0000</div>
+                    </div>
 
-                        <li>
-                            <div><strong>Employee</strong></div>
-                            <div>Username: employee@bugtracker.nl</div>
-                            <div>Password: 0000</div>
-                        </li>
+                    <div>
+                        <div><strong>Employee</strong></div>
+                        <div>Username: employee@bugtracker.nl</div>
+                        <div>Password: 0000</div>
+                    </div>
 
-                        <li>
-                            <div><strong>Administrator</strong></div>
-                            <div>Username: user@user.nl</div>
-                            <div>Password: 0000</div>
-                        </li>
+                    <div>
+                        <div><strong>Administrator</strong></div>
+                        <div>Username: user@user.nl</div>
+                        <div>Password: 0000</div>
+                    </div>
                     </ul>
                 </div>
 
