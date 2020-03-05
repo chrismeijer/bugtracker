@@ -2,6 +2,16 @@
 
 This document informs about how I have developed this BugTracker application. 
 
+## Current status
+
+The current status is that it's not fully completed yet! The main parts which are needed to be added, are:
+
+ - Fix font-awesome icons (see also [#17](/../../issues/17))
+ - Add attachments to a bug (see also [#4](/../../issues/4))
+ - Switch to soft deleted users (see also [#16](/../../issues/16))
+ - Create a view to set the permissions per role (see also [#11](/../../issues/11))
+ - Change bugs (see also [#4](/../../issues/4))
+
 ## Scope of the Project
 
 To make sure there are no misunderstandings I came up with this project scope:
