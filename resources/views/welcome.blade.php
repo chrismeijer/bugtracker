@@ -81,18 +81,34 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Welcome to this Bugtracker demo.
+                </div>
+
+                <div>
+                    <p>In this demo there are three users:</p>
+                    <ul>
+                        <li>
+                            <div><strong>Administrator</strong></div>
+                            <div>Username: admin@bugtracker.nl</div>
+                            <div>Password: 0000</div>
+                        </li>
+
+                        <li>
+                            <div><strong>Employee</strong></div>
+                            <div>Username: employee@bugtracker.nl</div>
+                            <div>Password: 0000</div>
+                        </li>
+
+                        <li>
+                            <div><strong>Administrator</strong></div>
+                            <div>Username: user@user.nl</div>
+                            <div>Password: 0000</div>
+                        </li>
+                    </ul>
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <a href="https://github.com/chrismeijer/bugtracker" target="_blank">Read more about it on GitHub</a>
                 </div>
             </div>
         </div>
