@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Comment;
 use Illuminate\Http\Request;
 
@@ -35,7 +36,15 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $loggedInUser = Auth::user();
+
+        $comment = new Comment();
+        $comment->created_by_user_id = $loggedInUser->id;
+        $comment->bug_id = $request->bugId;
+        $comment->comment = $request->comment;
+        $comment->save();
+
+        return redirect('bugs/' . $request->bugId);
     }
 
     /**

@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
 
 class PermissionsTableSeeder extends Seeder
 {
@@ -11,8 +13,10 @@ class PermissionsTableSeeder extends Seeder
      */
     public function run()
     {
+        $qtyActions = DB::table('actions')->count();
+
         // ADMINISTRATOR 
-            for($counterAction = 1; $counterAction <= 45; $counterAction++) :
+            for($counterAction = 1; $counterAction <= $qtyActions; $counterAction++) :
                 DB::table('permissions')->insert([
                     ['role_id' => 1, 'action_id' => $counterAction]
                 ]);

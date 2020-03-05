@@ -1,8 +1,15 @@
 .column-action {
-
+    width: 160px;
 }
 
 .column-action div {
     display: inline-block;
     width: 40px;
+}
+
+.comment {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
 }

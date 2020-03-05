@@ -5,11 +5,12 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Create role</div>
+                <div class="card-header">Edit role {{ $role->title }}</div>
 
                 <div class="card-body">
-                    {!! Form::open(['route' => ['roles.store']]) !!}
+                    {!! Form::open(['route' => ['roles.update', $role->id]]) !!}
                         @csrf
+                        @method('PATCH')
 
                         @if ($errors->any())
                             <div class="alert alert-danger">
@@ -23,13 +24,14 @@
 
                         <div>
                             {!! Form::label('title', 'Role', ['class' => 'control-label']) !!}
-                            {!! Form::text('title', null, [ 'class' => 'form-control', ]) !!}
+                            {!! Form::text('title', $role->title, [ 'class' => 'form-control', ]) !!}
                         </div>
 
                         <div>
-                            {!! Form::submit('Add', ['class' => 'btn btn-success']) !!}
+                            {!! Form::submit('Update', ['class' => 'btn btn-success']) !!}
                         </div>
                     {!! Form::close() !!}
+                    
                 </div>
             </div>
         </div>

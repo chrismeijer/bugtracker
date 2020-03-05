@@ -14,7 +14,8 @@ class ResolutionController extends Controller
      */
     public function index()
     {
-        //
+        $resolutions = Resolution::orderBy('title','asc')->get();
+        return view('admin.resolutions.index', compact(['resolutions']));
     }
 
     /**
@@ -24,7 +25,7 @@ class ResolutionController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.resolutions.create');
     }
 
     /**
@@ -35,7 +36,15 @@ class ResolutionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required'
+        ]);
+
+        $resolution = new Resolution();
+        $resolution->title = $request->title;
+        $resolution->save();
+
+        return redirect('resolutions');
     }
 
     /**
@@ -46,7 +55,8 @@ class ResolutionController extends Controller
      */
     public function show(Resolution $resolution)
     {
-        //
+        // REDIRECT TO INDEX
+        return redirect('resolutions');
     }
 
     /**
@@ -57,7 +67,7 @@ class ResolutionController extends Controller
      */
     public function edit(Resolution $resolution)
     {
-        //
+        return view('admin.resolutions.edit', compact(['resolution']));
     }
 
     /**
@@ -69,7 +79,14 @@ class ResolutionController extends Controller
      */
     public function update(Request $request, Resolution $resolution)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required'
+        ]);
+
+        $resolution->title = $request->title;
+        $resolution->save();
+
+        return redirect('resolutions');
     }
 
     /**
@@ -78,8 +95,10 @@ class ResolutionController extends Controller
      * @param  \App\Resolution  $resolution
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Resolution $resolution)
+    public function destroy($id)
     {
-        //
+        $resolution = Resolution::findOrFail($id);
+        $resolution->delete();
+        return redirect('resolutions');
     }
 }

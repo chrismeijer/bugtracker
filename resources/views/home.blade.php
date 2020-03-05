@@ -25,7 +25,7 @@
                             <th scope="col">Priority</th>
                             <th scope="col">Status</th>
                             <th scope="col">Created</th>
-                            <th scope="col" class="column__action"></th>
+                            <th scope="col" class="column-action"></th>
                         </thead>
                         <tbody>
                             @foreach($bugs as $bug)

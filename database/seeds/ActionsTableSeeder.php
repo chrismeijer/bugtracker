@@ -14,8 +14,10 @@ class ActionsTableSeeder extends Seeder
         $titles = [
             'index' => '',
             'create' => 'Add ',
+            'store' => 'Save ',
             'show' => 'View ',
             'edit' => 'Edit ',
+            'update' => 'Update ',
             'destroy' => 'Delete ',
         ];
 

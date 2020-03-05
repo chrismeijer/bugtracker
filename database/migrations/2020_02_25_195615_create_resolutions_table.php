@@ -17,6 +17,7 @@ class CreateResolutionsTable extends Migration
             Schema::create('resolutions', function (Blueprint $table) {
                 $table->bigIncrements('id');
                 $table->string('title');
+                $table->timestamps();
 
                 // SET INDEX
                     $table->index('title');

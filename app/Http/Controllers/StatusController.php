@@ -14,7 +14,8 @@ class StatusController extends Controller
      */
     public function index()
     {
-        //
+        $statuses = Status::orderBy('title','asc')->get();
+        return view('admin.statuses.index', compact(['statuses']));
     }
 
     /**
@@ -24,7 +25,7 @@ class StatusController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.statuses.create');
     }
 
     /**
@@ -35,7 +36,15 @@ class StatusController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required'
+        ]);
+
+        $status = new Status();
+        $status->title = $request->title;
+        $status->save();
+
+        return redirect('statuses');
     }
 
     /**
@@ -46,7 +55,8 @@ class StatusController extends Controller
      */
     public function show(Status $status)
     {
-        //
+        // REDIRECT TO INDEX
+        return redirect('statuses');
     }
 
     /**
@@ -57,7 +67,7 @@ class StatusController extends Controller
      */
     public function edit(Status $status)
     {
-        //
+        return view('admin.statuses.edit', compact(['status']));
     }
 
     /**
@@ -69,7 +79,14 @@ class StatusController extends Controller
      */
     public function update(Request $request, Status $status)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required'
+        ]);
+
+        $status->title = $request->title;
+        $status->save();
+
+        return redirect('statuses');
     }
 
     /**
@@ -78,8 +95,10 @@ class StatusController extends Controller
      * @param  \App\Status  $status
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Status $status)
+    public function destroy($id)
     {
-        //
+        $status = Status::findOrFail($id);
+        $status->delete();
+        return redirect('statuses');
     }
 }

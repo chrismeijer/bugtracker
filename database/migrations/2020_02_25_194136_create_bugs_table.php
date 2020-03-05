@@ -26,9 +26,6 @@ class CreateBugsTable extends Migration
             $table->text('description');
             $table->timestamps();
 
-            // SET INDEXES
-                //$table->index(['','','']);
-
             // SET FOREIGN KEYS
                 // CREATED BY USER_ID
                     $table->foreign('created_by_user_id')

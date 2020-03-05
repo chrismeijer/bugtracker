@@ -15,7 +15,22 @@ class CreateCommentsTable extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('created_by_user_id');
+            $table->unsignedBigInteger('bug_id');
+            $table->text('comment');
             $table->timestamps();
+
+            // SET FOREIGN KEYS
+                // CREATED BY USER_ID
+                    $table->foreign('created_by_user_id')
+                        ->references('id')->on('users')
+                        ->onDelete('restrict')
+                        ->onUpdate('restrict');
+                // BUGR_ID
+                    $table->foreign('bug_id')
+                        ->references('id')->on('bugs')
+                        ->onDelete('restrict')
+                        ->onUpdate('restrict');
         });
     }
 

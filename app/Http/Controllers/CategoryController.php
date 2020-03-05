@@ -14,7 +14,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::orderBy('title','asc')->get();
+        return view('admin.categories.index', compact(['categories']));
     }
 
     /**
@@ -24,7 +25,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.categories.create');
     }
 
     /**
@@ -35,7 +36,15 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required'
+        ]);
+
+        $category = new Category();
+        $category->title = $request->title;
+        $category->save();
+
+        return redirect('categories');
     }
 
     /**
@@ -46,7 +55,8 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        // REDIRECT TO INDEX
+        return redirect('categories');
     }
 
     /**
@@ -57,7 +67,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('admin.categories.edit', compact(['category']));
     }
 
     /**
@@ -69,7 +79,14 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required'
+        ]);
+
+        $category->title = $request->title;
+        $category->save();
+
+        return redirect('categories');
     }
 
     /**
@@ -78,8 +95,10 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy($id)
     {
-        //
+        $category = Category::findOrFail($id);
+        $category->delete();
+        return redirect('categories');
     }
 }

@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\Category;
 use App\Priority;
 use App\Resolution;
+use App\Comment;
+use App\User;
 
 class BugController extends Controller
 {
@@ -28,7 +30,8 @@ class BugController extends Controller
      */
     public function index()
     {
-        //
+        // REDIRECT TO HOME
+        return redirect('home');
     }
 
     /**
@@ -55,8 +58,6 @@ class BugController extends Controller
     {
         $user = Auth::user();
 
-        print_r($user);
-
         Bug::create([
             'created_by_user_id' => $user->id,
             'assigned_to_user_id' => NULL, 
@@ -69,8 +70,6 @@ class BugController extends Controller
         ]);
 
         return redirect('home');
-
-        //return $request->all();
     }
 
     /**
@@ -81,8 +80,11 @@ class BugController extends Controller
      */
     public function show($id)
     {
-        $bug = Bug::findOrFail($id);
-        return view('bugs.read', compact('bug'));
+        $bug = Bug::with(['createdByUser', 'assignedUser', 'category', 'priority', 'resolution', 'status'])->findOrFail($id);
+
+        $comments = Comment::orderBy('created_at', 'desc')->where('bug_id',$id)->with('user')->get();
+
+        return view('bugs.read', compact('bug', 'comments'));
     }
 
     /**

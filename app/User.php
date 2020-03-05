@@ -62,4 +62,12 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Bug', 'assigned_to_user_id');
     }
+
+    /**
+     * Get the comments associated with the user
+     */
+    public function comment()
+    {
+        return $this->hasMany('App\Comment');
+    }
 }

@@ -14,7 +14,8 @@ class PriorityController extends Controller
      */
     public function index()
     {
-        //
+        $priorities = Priority::orderBy('sort_no','asc')->get();
+        return view('admin.priorities.index', compact(['priorities']));
     }
 
     /**
@@ -24,7 +25,7 @@ class PriorityController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.priorities.create');
     }
 
     /**
@@ -35,7 +36,16 @@ class PriorityController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required'
+        ]);
+
+        $priority = new Priority();
+        $priority->title = $request->title;
+        $priority->sort_no = $request->sort_no;
+        $priority->save();
+
+        return redirect('priorities');
     }
 
     /**
@@ -46,7 +56,8 @@ class PriorityController extends Controller
      */
     public function show(Priority $priority)
     {
-        //
+        // REDIRECT TO INDEX
+        return redirect('priorities');
     }
 
     /**
@@ -57,7 +68,7 @@ class PriorityController extends Controller
      */
     public function edit(Priority $priority)
     {
-        //
+        return view('admin.priorities.edit', compact(['priority']));
     }
 
     /**
@@ -69,7 +80,15 @@ class PriorityController extends Controller
      */
     public function update(Request $request, Priority $priority)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required'
+        ]);
+
+        $priority->title = $request->title;
+        $priority->sort_no = $request->sort_no;
+        $priority->save();
+
+        return redirect('priorities');
     }
 
     /**
@@ -78,8 +97,10 @@ class PriorityController extends Controller
      * @param  \App\Priority  $priority
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Priority $priority)
+    public function destroy($id)
     {
-        //
+        $priority = Priority::findOrFail($id);
+        $priority->delete();
+        return redirect('priorities');
     }
 }

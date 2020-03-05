@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+use App\User;
+use App\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -13,11 +16,24 @@ class PermissionController extends Controller
     */
     public function checkPermission($request)
     {
-        $roleId = auth()->user()->role_id;
+        $loggedInUser = Auth::user();
+        if(!$loggedInUser) 
+            return false;
+        $roleId = $loggedInUser->role_id;
         $routeName = isset($request->name) ? $request->name : $request->route()->getName();
         $routeSplit = explode('.',$routeName);
         $controller = $routeSplit[0];
         $action = $routeSplit[1];
+
+        switch($action) :
+            case 'store':
+                $action = 'create';
+            break;
+
+            case 'update':
+                $action = 'edit';
+            break;
+        endswitch;
 
         $allowed = DB::table('permissions')
             ->join('actions', 'permissions.action_id', '=', 'actions.id')

@@ -62,4 +62,12 @@ class Bug extends Model
     {
         return $this->belongsTo('App\Status');
     }
+
+    /**
+     * Get the comments
+    */
+    public function comments()
+    {
+        return $this->hasMany('App\Comment');
+    }
 }
