@@ -181,11 +181,6 @@ php artisan make:middleware Authorize
 
 In the web-route I added a middleware group. The other routes are standard pages. 
 
-## MAYBE BELOW 
-For users with role customer I've added a factory
-
-Factory->Insert a lot of data 
-
 ## Install and run
 
 Don't forget to create a database and fill in the correct db-parameters.
