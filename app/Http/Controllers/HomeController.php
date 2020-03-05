@@ -27,18 +27,18 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $user = auth()->user();
-        //$roleId = auth()->user()->role_id;
-        $permission = new PermissionController();
-        // CHECK FOR EDITING BUG
-            $requestEditBug = new Request(['name' => 'bugs.edit']);
-            $userMayEditBug = (int)$permission->checkPermission($requestEditBug);
-        // CHECK FOR DELETING BUG
-            $requestDeleteBug = new Request(['name' => 'bugs.destroy']);
-            $userMayDeleteBug = (int)$permission->checkPermission($requestDeleteBug);
-
-        $bugs = Bug::orderBy('created_at','desc')->paginate(30);
-
-        return view('home', compact(['bugs', 'user', 'userMayEditBug', 'userMayDeleteBug']));
+        $loggedInUser = auth()->user();
+        // GET N BUGS PER PAGE
+            $bugs = Bug::orderBy('created_at','desc')->paginate(30);
+        // SET PERMISSION CONTROLLER
+            $permission = new PermissionController();
+            // CHECK FOR EDIT
+                $requestEditBug = new Request(['name' => 'bugs.edit']);
+                $userMayEditBug = (int)$permission->checkPermission($requestEditBug);
+            // CHECK FOR DELETE
+                $requestDeleteBug = new Request(['name' => 'bugs.destroy']);
+                $userMayDeleteBug = (int)$permission->checkPermission($requestDeleteBug);
+        // RETURN VIEW 
+            return view('home', compact(['bugs', 'loggedInUser', 'userMayEditBug', 'userMayDeleteBug']));
     }
 }

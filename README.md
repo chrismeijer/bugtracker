@@ -50,6 +50,7 @@ To make sure there are no misunderstandings I came up with this project scope:
   - **Extra actions executable by roles:**
     - Administrator:
       - Can mutate users
+      - Can provide any role to a user
       - Can mutate bugs
       - Can mutate roles
       - Can mutate categories
@@ -64,6 +65,7 @@ To make sure there are no misunderstandings I came up with this project scope:
 
     - Employee:
       - Can mutate users
+      - Can provide any role except administrator to a user
       - Can convert bug status
       - Can convert bug resolution
       - Can assign bug to employee itself
@@ -116,7 +118,6 @@ php artisan make:model Bug -mcr
 
 The pivot tables are there for relationships between models. 
 
-  - User to Role
   - Permissions (Role to Action)
 
 ## Controllers

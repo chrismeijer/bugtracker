@@ -59,7 +59,13 @@
                                         {{ __('Edit account')}}
                                     </a>
 
-                                    @if (Auth::user()->role_id == 1)    
+                                    @if (Auth::user()->role_id == 1 || Auth::user()->role_id == 2)
+                                        <a class="dropdown-item" href="{{ route('users.index') }}">
+                                            {{ __('Manage users')}}
+                                        </a>
+                                    @endif
+
+                                    @if (Auth::user()->role_id == 1)
                                         <a class="dropdown-item" href="{{ route('roles.index') }}">
                                             {{ __('Manage roles')}}
                                         </a>

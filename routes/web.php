@@ -28,6 +28,9 @@ use App\Http\Middleware\Authorize;
     Route::resource('comments', 'CommentController');
     Route::resource('attachments', 'AttachmentController');
 
+    // 
+        Route::get('users/{id}/delete', ['as' => 'users.delete', 'uses' => 'UserController@destroy']);
+
 // ROUTE GROUP CHECK FOR ROLE
     Route::group(['middleware' => Authorize::class], function() {
         Route::resource('roles', 'RoleController');
