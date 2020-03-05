@@ -170,6 +170,7 @@ php artisan make:seeder PrioritiesTableSeeder
 php artisan make:seeder StatusesTableSeeder
 php artisan make:seeder ResolutionsTableSeeder
 php artisan make:seeder PermissionsTableSeeder
+php artisan make:seeder BugsTableSeeder
 ```
 
 # Middleware
