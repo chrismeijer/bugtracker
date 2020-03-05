@@ -14,20 +14,18 @@
                         </div>
                     @endif
 
-                    <div><a class="btn btn-success" href="{{ route('bugs.create') }}"><i class="fas fa-plus"></i> Bug aanmelden</a></div>
+                    <div><a class="btn btn-success" href="{{ route('bugs.create') }}"><i class="fas fa-plus"></i> Add bug</a></div>
 
                     <table class="table table-striped">
                         <thead>
                             <th scope="col">Bug</th>
-                            <th scope="col">Door</th>
-                            <th scope="col">Opgepakt door</th>
-                            <th scope="col">Categorie</th>
-                            <th scope="col">Prioriteit</th>
+                            <th scope="col">Initiator</th>
+                            <th scope="col">Assigned To</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Priority</th>
                             <th scope="col">Status</th>
-                            <th scope="col">Aangemaakt</th>
-                            <th scope="col"></th>
-                            <th scope="col"></th>
-                            <th scope="col"></th>
+                            <th scope="col">Created</th>
+                            <th scope="col" class="column__action"></th>
                         </thead>
                         <tbody>
                             @foreach($bugs as $bug)
@@ -43,16 +41,18 @@
                                     <td>{{ $bug->priority->title }}</td>
                                     <td>{{ $bug->status->title }}</td>
                                     <td>{{ $bug->created_at }}</td>
-                                    <td><a class="btn btn-primary" href="{{ route('bugs.show', [$bug->id]) }}"><i class="fas fa-search"></i></a></td>
-                                    <td>
-                                        @if($userMayEditBug && $bug->createdByUser->id == $user->id || $user->role_id == 1)
-                                            <a class="btn btn-secondary" href="{{ route('bugs.edit', [$bug->id]) }}"><i class="fas fa-edit"></i></a> 
-                                        @endif
-                                    </td>
-                                    <td>
-                                        @if($userMayDeleteBug && $bug->createdByUser->id == $user->id || $user->role_id == 1)
-                                            <a class="btn btn-danger" href="#"><i class="fas fa-trash-alt"></i></a>
-                                        @endif
+                                    <td class="column-action">
+                                        <div><a class="btn btn-primary" href="{{ route('bugs.show', [$bug->id]) }}"><i class="fas fa-search"></i></a></div>
+                                        <div>
+                                            @if($userMayEditBug && $bug->createdByUser->id == $loggedInUser->id || $loggedInUser->role_id == 1)
+                                                <a class="btn btn-secondary" href="{{ route('bugs.edit', [$bug->id]) }}"><i class="fas fa-edit"></i></a> 
+                                            @endif
+                                        </div>
+                                        <div>
+                                            @if($userMayDeleteBug && $bug->createdByUser->id == $loggedInUser->id || $loggedInUser->role_id == 1)
+                                                <a class="btn btn-danger" href="#"><i class="fas fa-trash-alt"></i></a>
+                                            @endif
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach

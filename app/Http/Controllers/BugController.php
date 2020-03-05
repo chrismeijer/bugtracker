@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Bug;
 use Auth;
 use Illuminate\Http\Request;
+use App\Category;
+use App\Priority;
+use App\Resolution;
 
 class BugController extends Controller
 {
@@ -35,7 +38,11 @@ class BugController extends Controller
      */
     public function create()
     {
-        return view('bugs.create');
+        // GET ALL CATEGORIES
+        $categories = Category::orderBy('title')->get();
+        $priorities = Priority::orderBy('sort_no')->get();
+        $resolutions = Resolution::orderBy('title')->get();
+        return view('bugs.create', compact(['categories', 'priorities', 'resolutions']));
     }
 
     /**
@@ -52,12 +59,12 @@ class BugController extends Controller
 
         Bug::create([
             'created_by_user_id' => $user->id,
-            'assigned_to_user_id' => 0, 
-            'category_id' => 0, 
+            'assigned_to_user_id' => NULL, 
+            'category_id' => 1, 
             'status_id' => 1,
-            'priority_id' => 0,
+            'priority_id' => 1,
             'notify_creator' => 0,
-            'description' => '',
+            'description' => $request->description,
             'title' => $request->title
         ]);
 

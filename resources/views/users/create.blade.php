@@ -5,12 +5,11 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Edit user {{ $requested_user->name }}</div>
+                <div class="card-header">Create user</div>
 
                 <div class="card-body">
-                    {!! Form::open(['route' => ['users.update', $requested_user->id]]) !!}
+                {!! Form::open(['route' => ['users.store']]) !!}
                         @csrf
-                        @method('PATCH')
 
                         @if ($errors->any())
                             <div class="alert alert-danger">
@@ -24,17 +23,17 @@
 
                         <div>
                             {!! Form::label('role_id', 'Role', ['class' => 'control-label']) !!}
-                            {!! Form::select('role_id', $roles, $requested_user->role_id, ['class' => 'form-control', 'placeholder' => 'Pick a role...']) !!}
+                            {!! Form::select('role_id', $roles, null, ['class' => 'form-control', 'placeholder' => 'Pick a role...']) !!}
                         </div>
 
                         <div>
                             {!! Form::label('name', 'Name', ['class' => 'control-label']) !!}
-                            {!! Form::text('name', $requested_user->name, [ 'class' => 'form-control', ]) !!}
+                            {!! Form::text('name', null, [ 'class' => 'form-control', ]) !!}
                         </div>
 
                         <div>
                             {!! Form::label('email', 'E-mail', ['class' => 'control-label']) !!}
-                            {!! Form::text('email', $requested_user->email, [ 'class' => 'form-control', ]) !!}
+                            {!! Form::text('email', null, [ 'class' => 'form-control', ]) !!}
                         </div>
 
                         <div>
@@ -48,10 +47,9 @@
                         </div>
 
                         <div>
-                            {!! Form::submit('Update user', ['class' => 'btn btn-success']) !!}
+                            {!! Form::submit('Add user', ['class' => 'btn btn-success']) !!}
                         </div>
                     {!! Form::close() !!}
-                    
                 </div>
             </div>
         </div>
