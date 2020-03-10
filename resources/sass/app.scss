@@ -4,8 +4,6 @@
 // Variables
 @import 'variables';
 
-$fa-font-path: '../webfonts';
-
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
@@ -14,6 +12,8 @@ $fa-font-path: '../webfonts';
 @import '~@fortawesome/fontawesome-free/scss/regular.scss';
 @import '~@fortawesome/fontawesome-free/scss/solid.scss';
 @import '~@fortawesome/fontawesome-free/scss/brands.scss';
+
+@import '~summernote/dist/summernote.css';
 
 // Own
 @import './own';

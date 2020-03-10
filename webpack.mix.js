@@ -1,4 +1,5 @@
 const mix = require('laravel-mix');
+const ReplaceInFileWebpackPlugin = require('replace-in-file-webpack-plugin');
 
 /*
  |--------------------------------------------------------------------------
@@ -12,4 +13,17 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css');
+    .sass('resources/sass/app.scss', 'public/css')
+    .webpackConfig({
+        plugins: [
+            new ReplaceInFileWebpackPlugin([{
+                dir: 'public/css',
+                files: ['app.css'],
+                rules: [{
+                    search: /\/fonts\//g,
+                    replace: '../fonts/'
+                }]
+            }])
+        ]
+    })
+;
